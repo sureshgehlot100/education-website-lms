@@ -15,56 +15,56 @@ export let tabsdata = [
     {
         category:"Desgin",
         image:img2,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/04/24",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"Desgin",
         image:img3,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/12/24",
         head:"react",
         fee:"FREE"
     },
     {
         category:"Desgin",
         image:img1,
-        meta:"Updated 21/12/19",
+        meta:"Updated 20/12/19",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"Desgin",
         image:img5,
-        meta:"Updated 21/12/19",
+        meta:"Updated 22/08/24",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"Desgin",
         image:img4,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/12/24",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"3D + Animation",
         image:img6,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/12/23",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"3D + Animation",
         image:img5,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/12/25",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },
     {
         category:"3D + Animation",
         image:img3,
-        meta:"Updated 21/12/19",
+        meta:"Updated 10/12/25",
         head:"Fashion Photography From Professional",
         fee:"FREE"
     },

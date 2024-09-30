@@ -3,6 +3,7 @@ import { CartContext } from './CartContext';
 import HeaderTwo from '../Common/HeaderTwo';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { loadStripe, stripe } from '@stripe/stripe-js';
 
 export default function Cart() {
     const { cartItems, setCartItems } = useContext(CartContext);
@@ -41,20 +42,20 @@ export default function Cart() {
         });
         setCartItems(newCartItems);
     };
-    const handlwBuyCourse = async(e)=>{
-        const courseDetails = cartItems.filter((item) => item._id === e.target.value);
+    const handleBuyCourse = async (e) => {
+        const courseId = e.target.dataset.id;
+        const courseDetails = cartItems.filter((item) => item._id === courseId);
         try {
-              const response = await axios.post('http://localhost:5500/payment/req-payment', {
-                data: {
-                  items: JSON.stringify(courseDetails)
-                },
-                headers: {}
-              });
-              console.log(response);
-            } catch (error) {
-              console.log(error)
-        
-            }
+            const response = await axios.post('http://localhost:5500/payment/req-payment', { data: courseDetails });
+            const stripe = await loadStripe('pk_test_51LiyTNSH4QsKt7gApjEgxNySurOKQbOlLuc0XxwsqJek8ItuUyPQLIwIThhZ7Q4Ut7dYzWkrlg15v5kgV2opUJF6002wEvois3');
+            stripe.redirectToCheckout({
+                sessionId: response.data.session
+            })
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+
+        }
     }
 
     return (
@@ -109,7 +110,7 @@ export default function Cart() {
                                     <span>Total cost</span>
                                     <span>Rs {(total - discount) + (total * 10 / 100)} /-</span>
                                 </div>
-                                <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" onClick={handlwBuyCourse}>Checkout</button>
+                                <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full" data-id={cartItems[0]._id} id="courseId" onClick={handleBuyCourse}>Checkout</button>
                             </div>
                         </div>
                     </div>

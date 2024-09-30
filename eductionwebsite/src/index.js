@@ -12,6 +12,8 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Cart from './Pages/Cart';
 import { CartProvider } from './Pages/CartContext';
+import PaymentSuccess from './Pages/PaymentSuccess';
+import PaymentFailed from './Pages/PaymentFailed';
 
 let rout = createBrowserRouter([
   {
@@ -45,10 +47,15 @@ let rout = createBrowserRouter([
   {
     path: "/Cart",
     element: <Cart />
+  },
+  {
+    path: "/PaymentSuccess",
+    element:<PaymentSuccess/>
+  },
+  {
+    path: "/PaymentFailed",
+    element: <PaymentFailed/>
   }
-
-
-
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import TitleSection from '../Common/TitleSection'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown, faAngleUp, faSearch } from '@fortawesome/free-solid-svg-icons'
-
 import Header from '../Common/Header'
 import axios from 'axios'
 import { Card, CardHeader, CardBody, CardFooter, Typography, Button, } from "@material-tailwind/react";

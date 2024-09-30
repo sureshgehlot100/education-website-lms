@@ -28,6 +28,7 @@ const trueSlides = require('./slides/trueslides');
 const fetchUser = require('./user/readUser');
 const updateTeam = require('./teams/updateTeam');
 const userDelete = require('./user/userdelete');
+const receipt = require('./payment/receiptSuccess');
 
 module.exports = {
     registerAdmin,
@@ -59,5 +60,6 @@ module.exports = {
     registerUser,
     fetchUser,
     userDelete,
-    reqPayment
+    reqPayment,
+    receipt
 }

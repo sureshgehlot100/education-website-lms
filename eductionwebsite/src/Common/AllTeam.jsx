@@ -42,7 +42,6 @@ function AllTeam() {
                                 <li><FontAwesomeIcon icon={faStar} /></li>
                                 <li><FontAwesomeIcon icon={faStar} /></li>
                                 <li><FontAwesomeIcon icon={faStar} /></li>
-
                             </ul>
                         </div>
                     )
