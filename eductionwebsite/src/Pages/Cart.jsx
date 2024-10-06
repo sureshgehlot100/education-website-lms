@@ -4,6 +4,7 @@ import HeaderTwo from '../Common/HeaderTwo';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { loadStripe, stripe } from '@stripe/stripe-js';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
     const { cartItems, setCartItems } = useContext(CartContext);
@@ -30,7 +31,7 @@ export default function Cart() {
     const handleRemoveItem = (itemIndex) => {
         const newCartItems = cartItems.filter((item, index) => index !== itemIndex);
         setCartItems(newCartItems);
-        alert('Course remove from Cart');
+        alert('You want to remove Course from Cart');
     };
     const handleQuantityChange = (itemIndex, quantityChange) => {
         const newCartItems = cartItems.map((item, index) => {
@@ -61,6 +62,21 @@ export default function Cart() {
     return (
         <>
             <HeaderTwo />
+            {!cartItems.length && (
+                <div className="container w-[85%] mx-auto p-4 md:p-8 lg:p-12">
+                    <p className="text-lg font-bold mb-4 w-full bg-[green] p-4 text-white">
+                        Your cart is empty
+                    </p>
+                    <Link to={'/courses'}>
+                        <button
+                            className="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Return to Course 
+                        </button>
+                    </Link>
+                </div>
+            )}
+            {cartItems.length > 0 && (
             <div className="bg-gray-100">
                 <div class="container mx-auto mt-10">
                     <div class="flex shadow-md my-10">
@@ -116,6 +132,7 @@ export default function Cart() {
                     </div>
                 </div>
             </div>
+            )}
         </>
 
     )

@@ -67,13 +67,13 @@ function Footer() {
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contact Us</h2>
             <ul class="text-gray-500 dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                    <a href="#" class=" hover:underline">Ratanada Bhaskar Circle , Jodhpur</a>
+                    <a href="#" class=" hover:underline"> A3/603, Priyadarshini Adhishthan Bawadia Kalan, Bhopal (M.P.), 462026</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">123 456 7890</a>
+                    <a href="#" class="hover:underline">08770885079</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">wscubetech.com</a>
+                    <a href="#" class="hover:underline">OPSIGHT.AI</a>
                 </li>
               
             </ul>
@@ -83,7 +83,7 @@ function Footer() {
     </div>
     <div class="px-4 py-6 w-[100%] bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
         <div className='w-full lg:w-[1300px] flex flex-wrap lg:flex-nowrap justify-center gap-5 lg:gap-0 items-center lg:justify-between  m-auto '>
-        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2023 <a href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
+        <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 <a href="https://flowbite.com/">Flowbite™</a>. All Rights Reserved.
         </span>
         <div class=" flex items-center  gap-6 ">
             <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">

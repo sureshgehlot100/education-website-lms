@@ -15,17 +15,17 @@ function Contact_Us(){
         <div className='text-center font-["Nunito"]'>
           <FontAwesomeIcon icon={faLocationDot} className='text-[50px] py-4'/>
           <h1 className='text-[23px] font-[500]'>Our Location</h1>
-          <p className='text-gray-500 pt-2'>Collin Street West, Victor 8007, Australia.</p>
+          <p className='text-gray-500 pt-2'>A3/603, Priyadarshini Adhishthan Bawadia Kalan, Bhopal (M.P.), 462026</p>
         </div>
         <div className='text-center font-["Nunito"]'>
           <FontAwesomeIcon icon={faPhone} className='text-[50px] py-4'/>
           <h1 className='text-[23px] font-[500]'>Our Numbers</h1>
-          <p className='text-gray-500 pt-2'>Mobile: (+096) 468 235</p>
+          <p className='text-gray-500 pt-2'>Mobile: (+91)08770885079</p>
         </div>
         <div className='text-center font-["Nunito"]'>
           <FontAwesomeIcon icon={faEnvelope} className='text-[50px] py-4'/>
           <h1 className='text-[23px] font-[500]'>Our Email</h1>
-          <p className='text-gray-500 pt-2'>info@edumy.com</p>
+          <p className='text-gray-500 pt-2'>connect@opsight.ai</p>
         </div>
       </div>
 

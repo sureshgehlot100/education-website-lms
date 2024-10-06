@@ -11,7 +11,7 @@ function Viewvideo() {
   const [filepath, setfilePath] = useState('');
   const handlefatchVideo = async (req, res) => {
     const response = await axios.get('http://localhost:5500/videos/read_video');
-    console.log( response);
+    console.log(response);
     try {
       if (response.status !== 200) return alert('something went wrong');
       setfilePath(response.data.filePath);
@@ -52,27 +52,29 @@ function Viewvideo() {
                   <th>Course Name</th>
                   <th>Video Topic</th>
                   <th>Video </th>
-                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 {
-                 videoData.map((video,index)=>{
-                  return(
-                    <tr>
-                    <td>{index+1}</td>
-                    <td>{video.coursecat.coursename}</td>
-                    <td>{video.videotopic}</td>
-                    <td>{video.videourl}</td>
-                    <td>{video.status}</td>
-                    <td className='text-center'>
-                      <button className='bg-green-500 text-white px-5 mr-5 py-1'>Edit</button>
-                      <button className='bg-red-400 text-white px-5 py-1'>Delete</button>
-                    </td>
-                  </tr>
-                  )
-                 }) 
+                  videoData.map((video, index) => {
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{video.coursecat.coursename}</td>
+                        <td>{video.videotopic}</td>
+                        <td><video width="200" height="150" controls>
+                          <source src={filepath + video.videoFile} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video></td>
+                        <td>{video.status}</td>
+                        <td className='text-center'>
+                          <button className='bg-green-500 text-white px-5 mr-5 py-1'>Edit</button>
+                          <button className='bg-red-400 text-white px-5 py-1'>Delete</button>
+                        </td>
+                      </tr>
+                    )
+                  })
                 }
-               
+
               </table>
             </div>
           </div>

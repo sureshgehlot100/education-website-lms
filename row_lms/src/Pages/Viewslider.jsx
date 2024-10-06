@@ -85,7 +85,7 @@ function Viewslider() {
                   <th>S.no</th>
                   <th>Slider Heading</th>
                   <th>Slider sub-heading</th>
-                  <th>Slider Description</th>
+                  {/* <th>Slider Description</th> */}
                   <th>Slider Image</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -97,7 +97,7 @@ function Viewslider() {
                         <td>{i + 1}</td>
                         <td>{slides.slidesheading}</td>
                         <td>{slides.slidessubheading}</td>
-                        <td>{slides.slidesdes}</td>
+                        {/* <td>{slides.slidesdes}</td> */}
                         <td>
                           <img src={filepath + slides.thumbnail} alt="" className='w-[100px]' />
                         </td>

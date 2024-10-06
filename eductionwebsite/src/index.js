@@ -14,6 +14,8 @@ import Cart from './Pages/Cart';
 import { CartProvider } from './Pages/CartContext';
 import PaymentSuccess from './Pages/PaymentSuccess';
 import PaymentFailed from './Pages/PaymentFailed';
+import Videos from './Pages/Video';
+
 
 let rout = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ let rout = createBrowserRouter([
   {
     path: "/about",
     element: <AboutUs />
+  },
+  {
+    path: "/videos",
+    element: <Videos />
   },
   {
     path: "/contact",

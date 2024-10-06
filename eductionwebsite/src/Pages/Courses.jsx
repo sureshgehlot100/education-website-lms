@@ -13,7 +13,6 @@ function Courses() {
   let [catelog, setcatelog] = useState('')
   let [search, setsearch] = useState('')
   let [faq, setFaq] = useState(false);
-
   const [courseData, setcourseData] = useState([]);
   const [filePath, setfilePath] = useState('');
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -95,7 +94,6 @@ function Courses() {
             <Button onClick={handleAddToCart} value={course._id} className='p-[10px_20px] bg-[blue] block'>Add To Cart</Button>
           </CardFooter>
         </Card>
-
       )
     ));
 
@@ -121,7 +119,7 @@ function Courses() {
     <>
       <Header />
       <TitleSection title={"Courses"} />
-      <div className='max-w-[1300px] m-auto   mt-4 py-5'>
+      <div className='max-w-[1300px] m-auto mt-4 py-5'>
         <div className='grid grid-cols-[73%_auto] gap-4'>
           <div className=' py-5 px-4'>
             <form action="" >
@@ -139,7 +137,6 @@ function Courses() {
                 </div>
               </div>
             </form>
-
             <div className='grid grid-cols-2 gap-8 mt-[40px] d-flex'>
               {displayCourses}
             </div>

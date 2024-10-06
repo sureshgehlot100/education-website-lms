@@ -6,11 +6,10 @@ const videoSchema = new mongoose.Schema({
         ref: 'courses'
     },
     videotopic:String,
-    videourl:String,
-    status:{
-        type:Boolean,
-        default:true
-    },
+    videoFile: {
+        type: String,
+        required: true,
+      },
     created_at:{
         type:Date,
         default:Date.now

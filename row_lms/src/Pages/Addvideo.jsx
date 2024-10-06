@@ -32,27 +32,33 @@ function Addvideo() {
     }
   };
   useEffect(() => {
-    handlefetchCourse(); 
+    handlefetchCourse();
   }, []);
 
   const handleaddVideo = async (e) => {
     e.preventDefault();
-    console.log(data);
+    const formData = new FormData();
+    formData.append('videoFile', data.videoFile);
+    console.log(formData);
     try {
-      const response = await axios.post('http://localhost:5500/videos/add_video',data);
+      const response = await axios.post('http://localhost:5500/videos/add_video', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      },);
 
       if (response.status !== 200) return alert('something went wrong');
       alert('data inserted successfully');
       console.log(response);
       nav('/viewvideo');
-      
+
     } catch (error) {
       console.log(error);
-      alert('somthing went wrong');  
+      alert('somthing went wrong');
     }
-    
+
   };
- 
+
   return (
     <div>
 
@@ -81,9 +87,8 @@ function Addvideo() {
                 </select>
                 Video Topic
                 <input type="text" onChange={(e) => { SetData({ ...data, videotopic: e.target.value }) }} name='videotopic' className='border border-gray-400 w-full h-[50px] mb-3 mt-2 px-4 ' />
-                Video Link
-                <input type="text" onChange={(e) => { SetData({ ...data, videourl: e.target.value }) }} name='videourl' className='border border-gray-400 w-full h-[50px] mb-3 mt-2 px-4' />
-
+                Video File
+                <input type="file" onChange={(e) => { const file = e.target.files[0]; SetData({ ...data, videoFile: file }) }} name='videoFile' className='border border-gray-400 w-full h-[50px] mb-3 mt-2 px-4' />
                 Video Stauts
                 <div className='flex items-center mt-5  mb-8 gap-2'>
                   <input type="radio" onChange={(e) => { SetData({ ...data, status: e.target.value }) }} name='status' value={true} className='mx-2 w-[20px] h-[20px] text-[20px]' /> Active

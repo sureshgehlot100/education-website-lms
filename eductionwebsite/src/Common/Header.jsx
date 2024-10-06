@@ -12,14 +12,14 @@ function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const token = Cookies.get('use-data'); 
+        const token = Cookies.get('use-data');
         console.log(token)
         if (token) {
             setIsLoggedIn(true);
         }
     }, []);
     const handleLogout = () => {
-        Cookies.remove('use-data'); 
+        Cookies.remove('use-data');
         setIsLoggedIn(false);
     };
 
@@ -41,9 +41,10 @@ function Header() {
             <header className={`${stick === true ? "bg-white text-black shadow-lg" : "bg-transparent"} lg:fixed z-[999999] w-full`} id='headerpart'>
                 <nav className=" w-full border-gray-200 px-4 py-2.5 ">
                     <div className="flex flex-wrap justify-between items-center mx-auto lg:px-6 lg:py-4 ">
-                        <a href="#" className="flex items-center">
+                        <a href="#" className="flex items-center text-2xl font-bold">
                             <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-                            <span className="self-center text-xl font-semibold whitespace-nowrap ">LOGO</span>
+                            Opsight
+                            <span className="self-center text-2xl font-bold whitespace-nowrap text-green-600 ">.AI</span>
                         </a>
                         <div className={`flex items-center lg:order-2 font-[400] ${stick === true ? "text-black" : "text-white"} `}>
                             {isLoggedIn ? (
@@ -60,8 +61,6 @@ function Header() {
                                 <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                             </button>
                         </div>
-
-
                         <div className={`lg:bg-transparent text-white ${menu === true ? ' bg-black left-0' : 'left-[-100%]'} duration-500  text-white absolute lg:static top-[63px]  w-[80%] lg:w-auto h-[100%]   max-h-[100vh]   z-[999999]`} id="mobile-menu-2">
                             {
                                 menu === true ?
@@ -71,6 +70,9 @@ function Header() {
                                         </li>
                                         <li>
                                             <Link to={'/courses'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">Courses</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={'/videos'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">Videos</Link>
                                         </li>
                                         <li>
                                             <Link to={'/about'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">About Us</Link>
@@ -83,12 +85,15 @@ function Header() {
                                         </li>
                                     </ul>
                                     :
-                                    <ul className={`flex flex-col gap-[30px] mt-8 font-[400] ${stick === true ? "text-black" : "text-white"}  font-['Poppins'] lg:flex-row lg:space-x-8 lg:mt-0 text-[18px] `}>
+                                    <ul className={`flex flex-col gap-[10px] mt-8 font-[400] ${stick === true ? "text-black" : "text-white"}  font-['Poppins'] lg:flex-row lg:space-x-8 lg:mt-0 text-[18px] `}>
                                         <li>
                                             <Link to={'/'} className="block py-2 pr-4 pl-[50px]  rounded bg-primary-700 lg:bg-transparent lg:p-0 " aria-current="page">Home</Link>
                                         </li>
                                         <li>
                                             <Link to={'/courses'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">Courses</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={'/videos'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">Videos</Link>
                                         </li>
                                         <li>
                                             <Link to={'/about'} className="block py-2 pr-4 pl-[50px]   border-gray-100  lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0  dark:hover:bg-gray-700  lg:dark:hover:bg-transparent dark:border-gray-700">About Us</Link>

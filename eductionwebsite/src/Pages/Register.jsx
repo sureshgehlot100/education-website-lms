@@ -15,31 +15,6 @@ function Register() {
     const [userApproved, setuserApproved] = useState(false);
 
 
-    // const main = () => {
-    //     // regular expression
-    //     const pattern = new RegExp('/^[a-zA-Z ]+$/');
-
-    //     const str = "suresh";
-    //     console.log(pattern.test(str));
-
-    // };
-    // useEffect(() => {
-    //     main();
-    // }, []);
-
-    //time se krne ka tarika
-    // useEffect(() => {
-    //     const currentDate = new Date();
-    //     const time = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}+10`;
-    //     const newDate = new Date(currentDate.toDateString() + '' + time);
-
-    //     console.log(newDate);
-
-    //     Cookies.set('temp', 'suresh', {expires: newDate});
-
-
-    // }, []);
-
     const formValidation = async () => {
 
         const newArr = {};
@@ -125,7 +100,6 @@ function Register() {
             }
 
         }
-
         //abc!1234AB786 this is a password pattern which above regex set//
     };
     const handleOTPGEN = async (e) => {
@@ -159,15 +133,12 @@ function Register() {
             alert('something went wrong')
 
         }
-
-
     }
     return (
         <>
             <HeaderTwo />
             <section class=" ">
                 <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-
                     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
