@@ -59,7 +59,11 @@ function Login() {
 
     <div className='bg-[#F5F7FF] w-full h-[100vh] flex justify-center items-center'>
       <div className='w-[500px]  bg-white px-[50px] py-[50px] '>
-        <img src={logo} alt="" width={180} className='mb-5' />
+        <a href="#" className="flex items-center text-2xl font-bold">
+          <img src="https://opsight.ai/logo.jpg" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+          Opsight
+          <span className="self-center text-2xl font-bold whitespace-nowrap text-green-600 ">.AI</span>
+        </a>
         <h3 className='text-black text-[16px] font-[400]'>Sign in to continue.</h3>
         <form action="">
           <input type="text" name='mail' onChange={(e) => { setAdmindata({ ...admindata, mail: e.target.value }) }} className=' mt-5 px-7 text-[16px] focus:outline-blue-400 w-full h-[50px] border border-1 border-[#c5c0c0]' placeholder='Mail' />
