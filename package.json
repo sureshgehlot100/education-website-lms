@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  },
+"scripts": {
+  "start:all": "concurrently \"cd server && nodemon\" \"cd eductionwebsite && npm start\" \"cd client && npm start\" \"cd student && npm run dev\" \"cd trainer && npm run dev\""
+}
+}

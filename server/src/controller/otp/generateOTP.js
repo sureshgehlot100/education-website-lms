@@ -53,7 +53,7 @@ const generate_otp = async (req, res) => {
 </head>
 <body>
     <div class="container">
-        <h1>We Hirring new team </h1>
+        <h1>Welcome To Opsight.AI </h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, hic quia. Quidem placeat illo eveniet maxime quibusdam. Dolores, minus eius! Rem, modi sit. Minus fugiat, placeat ea dolore molestiae possimus.
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam alias unde officia tempora animi deleniti obcaecati repellendus, odio, similique reiciendis veritatis exercitationem quod ipsam suscipit minus. Dicta animi nam reprehenderit.

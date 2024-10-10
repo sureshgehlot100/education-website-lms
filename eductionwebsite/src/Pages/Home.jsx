@@ -4,7 +4,6 @@ import Header from '../Common/Header'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";  
 import HomeSlider from '../Common/HomeSlider';
-
 import Cards from '../Common/Cards';
 import CardsTwo from '../Common/CardsTwo';
 import Tabs from '../Common/Tabs';
