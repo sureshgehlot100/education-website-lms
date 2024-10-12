@@ -39,11 +39,11 @@ function Viewvideo() {
     }, []);
 
     return (
-        <div className='bg-[#F5F7FF]'>
+        <div className='bg-[#F5F7FF] h-full'>
             <Header />
             <div className='flex bg-[#F5F7FF]'>
                 <Sidebar />
-                <div className='w-[95%] relative px-[30px] py-[50px]  bg-[#F5F7FF] text-black' >
+                <div className='w-[95%] relative px-[30px] py-[50px] h-full bg-[#F5F7FF] text-black' >
                     <h1 className='text-[25px] font-[500] mb-[10px]'>
                         Welcome Trainer
                     </h1>

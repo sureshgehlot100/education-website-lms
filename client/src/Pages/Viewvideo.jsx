@@ -4,11 +4,13 @@ import Header from '../Common/Header';
 import Sidebar from '../Common/Sidebar';
 import Footer from '../Common/Footer';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function Viewvideo() {
   let { changemenu } = useContext(mainContext);
   const [videoData, setvideoData] = useState([]);
   const [filepath, setfilePath] = useState('');
+  const nav = useNavigate();
   const handlefatchVideo = async (req, res) => {
     const response = await axios.get('http://localhost:5500/videos/read_video');
     console.log(response);
@@ -26,6 +28,10 @@ function Viewvideo() {
     }
 
   };
+  const handleUpdate = async (e) => {
+    console.log(e.target);
+    nav(`/Addvideo/${e.target.value}`);
+}
   useEffect(() => {
     handlefatchVideo();
 
@@ -67,8 +73,8 @@ function Viewvideo() {
                         </video></td>
                         <td>{video.status}</td>
                         <td className='text-center'>
-                          <button className='bg-green-500 text-white px-5 mr-5 py-1'>Edit</button>
-                          <button className='bg-red-400 text-white px-5 py-1'>Delete</button>
+                          <button value={video._id} onClick={handleUpdate} className='bg-green-500 text-white px-5 mr-5 py-1'>Edit</button>
+                          <button value={video._id} onClick={handleUpdate} className='bg-red-400 text-white px-5 py-1'>Delete</button>
                         </td>
                       </tr>
                     )

@@ -5,10 +5,11 @@ import Sidebar from '../Common/Sidebar';
 import Footer from '../Common/Footer';
 import prev from '../img/generic-image-file-icon-hi.png'
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 
 function Addvideo() {
+  const params = useParams();
   let { changemenu } = useContext(mainContext);
   const [courseData, setcourseData] = useState([]);
   const [filePath, setfilePath] = useState('');
@@ -40,22 +41,33 @@ function Addvideo() {
     const formData = new FormData();
     formData.append('videoFile', data.videoFile);
     console.log(formData);
-    try {
-      const response = await axios.post('http://localhost:5500/videos/add_video', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      },);
+    if (params._id) {
+      try {
+          const response = await axios.put(`http:localhost:5500/videos/update_video/${params._id}`, data);
+          if (response.status !== 200) return alert('something went wrong');
+          nav('/Viewvideo');
+      } catch (error) {
+          console.log(error);
+          alert('something went wrong');
+      }
+  }
+  else {
+      try {
+          const response = await axios.post('http://localhost:5500/videos/add_video', data, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              }
+          },);
 
-      if (response.status !== 200) return alert('something went wrong');
-      alert('data inserted successfully');
-      console.log(response);
-      nav('/viewvideo');
-
-    } catch (error) {
-      console.log(error);
-      alert('somthing went wrong');
-    }
+          if (response.status !== 200) return alert('something went wrong');
+          alert('data inserted successfully');
+          console.log(response);
+          nav('/Viewvideo');
+      } catch (error) {
+          console.log(error);
+          alert('something went wrong');
+      }
+  }
 
   };
 

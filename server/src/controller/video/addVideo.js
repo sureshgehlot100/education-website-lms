@@ -12,6 +12,7 @@ const addVideo = async (req, res) => {
       const filename = path.basename(req.file.path);
       courseData.videoFile = filename;
     }
+    courseData.coursename = req.body.coursename;
     const data = new Video(courseData);
     const response = await data.save();
     res.status(200).json({ message: "data inserted successfully", data: response });

@@ -7,6 +7,8 @@ import { faAngleDown, faAngleUp, faSearch } from '@fortawesome/free-solid-svg-ic
 import axios from 'axios';
 import { Card, CardBody, CardHeader, Typography } from '@material-tailwind/react';
 import Footer from '../Common/Footer';
+import { useNavigate } from 'react-router-dom';
+
 function Videos() {
     let [catelog, setcatelog] = useState('')
     let [search, setsearch] = useState('')
@@ -15,8 +17,47 @@ function Videos() {
     const [filePath, setfilePath] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
     const videosPerPage = 6;
+    const previewDuration = 30;
     const pagesVisited = pageNumber * videosPerPage;
+    const [previewEnded, setPreviewEnded] = useState({});
+    const [previewProgress, setPreviewProgress] = useState({});
+    const navigate = useNavigate();
 
+
+    const playPreview = (index) => {
+        const video = document.getElementById(`previewVideo-${index}`);
+        if (video) {
+            video.currentTime = 0;
+            video.play();
+
+            const checkTime = () => {
+                if (video.currentTime >= previewDuration) {
+                    video.pause();
+                    setPreviewEnded(prev => ({ ...prev, [index]: true }));
+                } else {
+                    requestAnimationFrame(checkTime);
+                }
+            };
+
+            const updateProgress = () => {
+                if (video.currentTime < previewDuration) {
+                    setPreviewProgress(prev => ({
+                        ...prev,
+                        [index]: (video.currentTime / previewDuration) * 100
+                    }));
+                    requestAnimationFrame(updateProgress);
+                }
+            };
+
+            checkTime();
+            updateProgress();
+
+            // Add an event listener for when the video ends
+            video.addEventListener('ended', () => {
+                setPreviewEnded(prev => ({ ...prev, [index]: true }));
+            });
+        }
+    };
 
     const getVideos = async (req, res) => {
         try {
@@ -34,29 +75,57 @@ function Videos() {
     const displayVideos = videoData
         .slice(pagesVisited, pagesVisited + videosPerPage)
         .map((Video, index) => (
-            (
-                <Card className="mt-6 w-96">
-                    <CardHeader color="blue-gray" className="relative h-56">
-                        <video width="100%" height="400" controls>
-                            <source src={filePath + Video.videoFile} type="video/mp4" topic={Video.videotopic} />
-                        </video>
-                    </CardHeader>
-                    <CardBody>
-                        <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {Video.coursecat.coursename}
-                        </Typography>
-                        <Typography variant="h5" color="blue-gray" className="mb-2">
-                            {Video.coursecat.courseprice}
-                        </Typography>
-                        <Typography variant="h5" color="blue-gray" className="mb-2">
-                            Duration: {Video.coursecat.courseduration}
-                        </Typography>
-                        <Typography variant="h6" color="blue-gray" className="mb-2">
-                            Description: {Video.coursecat.coursedes}
-                        </Typography>
-                    </CardBody>
-                </Card>
-            )
+            <Card className="mt-6 w-96" key={index}>
+                <CardHeader color="blue-gray" className="relative h-56">
+                    <video id={`previewVideo-${index}`} width="100%" height="400">
+                        <source src={filePath + Video.videoFile} type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        {!previewEnded[index] ? (
+                            <button
+                                onClick={() => playPreview(index)}
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded opacity-75 hover:opacity-100 transition-opacity duration-300"
+                            >
+                                Play Preview
+                            </button>
+                        ) :  (
+                            <div className="text-center">
+                                <div className="text-white font-bold py-2 px-4 rounded bg-gray-500 opacity-75 mb-2">
+                                    Preview Ended
+                                </div>
+                                <button 
+                                    onClick={() => navigate('/courses')}
+                                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded opacity-75 hover:opacity-100 transition-opacity duration-300"
+                                >
+                                    Buy Course
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                    {!previewEnded[index] && previewProgress[index] !== undefined && (
+                        <div className="absolute bottom-0 left-0 right-0 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div
+                                className="bg-blue-600 h-2.5 rounded-full"
+                                style={{ width: `${previewProgress[index]}%` }}
+                            ></div>
+                        </div>
+                    )}
+                </CardHeader>
+                <CardBody>
+                    <Typography variant="h5" color="blue-gray" className="mb-2">
+                        {Video.coursecat.coursename}
+                    </Typography>
+                    <Typography variant="h5" color="blue-gray" className="mb-2">
+                        {Video.coursecat.courseprice}
+                    </Typography>
+                    <Typography variant="h5" color="blue-gray" className="mb-2">
+                        Duration: {Video.coursecat.courseduration}
+                    </Typography>
+                    <Typography variant="h6" color="blue-gray" className="mb-2">
+                        Description: {Video.coursecat.coursedes}
+                    </Typography>
+                </CardBody>
+            </Card>
         ));
     const pageCount = Math.ceil(videoData.length / videosPerPage);
 
@@ -124,7 +193,7 @@ function Videos() {
 
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }

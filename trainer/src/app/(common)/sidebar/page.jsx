@@ -77,12 +77,12 @@ function Sidebar() {
                         <FontAwesomeIcon icon={faAngleDown} fontSize="1x" className={`${isOpen['course'] ? 'rotate-180' : ''} pr-2`} />
                         <ul className={isOpen['course'] ? '' : 'hidden'}>
                             <li>
-                                <Link href="/AddVideo" className="block py-2 px-4 hover:bg-[#4B49AC]">
+                                <Link href="/Courses/AddCourse" className="block py-2 px-4 hover:bg-[#4B49AC]">
                                     Add Course
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/Video" className="block py-2 px-4 hover:bg-[#4B49AC]">
+                                <Link href="/Courses/ViewCourse" className="block py-2 px-4 hover:bg-[#4B49AC]">
                                     View Course
                                 </Link>
                             </li>
