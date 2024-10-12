@@ -5,12 +5,17 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { loadStripe, stripe } from '@stripe/stripe-js';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 
 export default function Cart() {
+    const navigate = useNavigate();
     const { cartItems, setCartItems } = useContext(CartContext);
     const [promoCode, setPromoCode] = useState('');
     const [total, setTotal] = useState(0);
     const [discount, setDiscount] = useState(0);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
     useEffect(() => {
@@ -43,7 +48,28 @@ export default function Cart() {
         });
         setCartItems(newCartItems);
     };
+    useEffect(() => {
+        const token = Cookies.get('use-data');
+        console.log(token)
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+    
+    function checkUserLoggedIn() {
+        const token = Cookies.get('use-data');
+        return !!token;
+    }
+
     const handleBuyCourse = async (e) => {
+        e.preventDefault();
+        //  Check if user is logged in
+         const isLoggedIn = checkUserLoggedIn(); 
+         if (!isLoggedIn) {
+             // If not logged in, redirect to login page
+             navigate('/login', { state: { from: '/cart' } }); // Pass the current location so you can redirect back after login
+             return;
+         }
         const courseId = e.target.dataset.id;
         const courseDetails = cartItems.filter((item) => item._id === courseId);
         try {

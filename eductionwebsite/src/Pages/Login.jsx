@@ -34,7 +34,7 @@ function Login() {
         if (user) {
             Cookies.set('use-data', user);
             alert('login successfully');
-            nav('/');
+            nav('/cart');
 
         } else {
             setError('Invalid email or password');

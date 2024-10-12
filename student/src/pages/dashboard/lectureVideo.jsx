@@ -7,68 +7,96 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 
-
 function Video() {
-    const [videoData, setvideoData] = useState([]);
-    const [filepath, setfilePath] = useState('');
-    const handlefatchVideo = async (req, res) => {
-        const response = await axios.get('http://localhost:5500/videos/read_video');
-        console.log(response);
+    const [videoData, setVideoData] = useState([]);
+    const [filePath, setFilePath] = useState('');
+    const [selectedVideo, setSelectedVideo] = useState(null);
+
+    const handleFetchVideo = async () => {
         try {
-            if (response.status !== 200) return alert('something went wrong');
-            setfilePath(response.data.filePath);
-            console.log(setfilePath);
-
-            setvideoData(response.data.data);
-            console.log(setvideoData);
-
+            const response = await axios.get('http://localhost:5500/videos/read_video');
+            if (response.status !== 200) {
+                alert('Something went wrong');
+                return;
+            }
+            setFilePath(response.data.filePath);
+            setVideoData(response.data.data);
+            if (response.data.data.length > 0) {
+                setSelectedVideo(response.data.data[0]);
+            }
         } catch (error) {
-            console.log(error)
-
+            console.log(error);
         }
-
     };
-    useEffect(() => {
-        handlefatchVideo();
 
+    useEffect(() => {
+        handleFetchVideo();
     }, []);
 
-    return (
-        <div className="mx-auto my-16 flex max-w-screen-lg gap-8  ">
-            <Card className="bg-white rounded-lg shadow-md">
-                <CardBody>
-                    <div className="flex flex-wrap justify-evenly gap-6">
-                        {
-                            videoData.map((Video, index) => {
-                                return (
-                                    <Card className="mt-6 w-96">
-                                        <CardHeader color="blue-gray" className="relative h-56">
-                                            <video width="100%" height="400" controls>
-                                                <source src={filepath + Video.videoFile} type="video/mp4" topic={Video.videotopic} />
-                                            </video>
-                                        </CardHeader>
-                                        <CardBody>
-                                            <Typography variant="h5" color="blue-gray" className="mb-2">
-                                                {Video.coursecat.coursename}
-                                            </Typography>
-                                            <Typography variant="h5" color="blue-gray" className="mb-2">
-                                                {Video.coursecat.courseprice}
-                                            </Typography>
-                                            <Typography variant="h5" color="blue-gray" className="mb-2">
-                                                Duration: {Video.coursecat.courseduration}
-                                            </Typography>
-                                            <Typography variant="h6" color="blue-gray" className="mb-2">
-                                                Description: {Video.coursecat.coursedes}
-                                            </Typography>
-                                        </CardBody>
-                                    </Card>
-                                )
-                            })
+    const handleVideoSelect = (video) => {
+        setSelectedVideo(video);
+    };
 
-                        }
-                    </div>
-                </CardBody>
-            </Card>
+    return (
+        <div className="mx-auto my-16 flex max-w-screen-xl gap-8">
+            {/* Main Video */}
+            <div className="w-3/4">
+                {selectedVideo && (
+                    <Card className="bg-white rounded-lg shadow-md">
+                        <CardHeader color="blue-gray" className="relative h-full">
+                            <video
+                                key={selectedVideo.videoFile} 
+                                width="100%"
+                                height="100%"
+                                controls
+                                autoPlay // Optional: auto-play when a new video is selected
+                            >
+                                <source src={filePath + selectedVideo.videoFile} type="video/mp4" />
+                            </video>
+                        </CardHeader>
+                        <CardBody>
+                            <Typography variant="h5" color="blue-gray" className="mb-2">
+                                {selectedVideo.coursecat.coursename}
+                            </Typography>
+                            <Typography variant="h5" color="blue-gray" className="mb-2">
+                                {selectedVideo.coursecat.courseprice}
+                            </Typography>
+                            <Typography variant="h5" color="blue-gray" className="mb-2">
+                                Duration: {selectedVideo.coursecat.courseduration}
+                            </Typography>
+                            <Typography variant="h6" color="blue-gray" className="mb-2">
+                                Description: {selectedVideo.coursecat.coursedes}
+                            </Typography>
+                        </CardBody>
+                    </Card>
+                )}
+            </div>
+
+            {/* Suggested Videos */}
+            <div className="w-1/4">
+                <Typography variant="h6" className="mb-6">Suggested Videos</Typography>
+                {videoData.map((video, index) => (
+                    <Card
+                        key={index}
+                        className="mb-4 cursor-pointer"
+                        onClick={() => handleVideoSelect(video)}
+                    >
+                        <CardHeader color="blue-gray" className="relative h-24">
+                            <video width="100%" height="100%">
+                                <source src={filePath + video.videoFile} type="video/mp4" />
+                            </video>
+                        </CardHeader>
+                        <CardBody>
+                            <Typography variant="h6" color="blue-gray" className="mb-1">
+                                {video.coursecat.coursename}
+                            </Typography>
+                            <Typography variant="small" color="gray">
+                                Duration: {video.coursecat.courseduration}
+                            </Typography>
+                        </CardBody>
+                    </Card>
+                ))}
+            </div>
         </div>
     );
 }
