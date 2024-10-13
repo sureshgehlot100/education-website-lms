@@ -74,7 +74,7 @@ function Viewcourse() {
 
   };
   const handleUpdate = async (e) => {
-    router.push(`/addcourse/${e.target.value}`);
+    router.push(`/Courses/AddCourse/${e.target.value}`);
 
   };
   const handleDelete = async (e) => {

@@ -88,6 +88,18 @@ function Sidebar() {
                             </li>
                         </ul>
                     </li>
+                    <li className="block py-2 px-4 hover:bg-[#4B49AC]" onClick={(e) => handleItemClick(e, 'course')}>
+                        <FontAwesomeIcon icon={faBook} fontSize="2x" className='pr-3' />
+                        <span className="pr-2">LogIn</span>
+                        <FontAwesomeIcon icon={faAngleDown} fontSize="1x" className={`${isOpen['course'] ? 'rotate-180' : ''} pr-2`} />
+                        <ul className={isOpen['course'] ? '' : 'hidden'}>
+                            <li>
+                                <Link href="/Login" className="block py-2 px-4 hover:bg-[#4B49AC]">
+                                    Login
+                                </Link>
+                            </li>
+                        </ul>
+                    </li>
                     {/* <!-- Add more items here --> */}
                 </ul>
             </div>

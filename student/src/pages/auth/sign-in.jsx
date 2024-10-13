@@ -6,22 +6,64 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
 
 
 export function SignIn() {
+  const nav = useNavigate();
+
+  const IfAdminLoggedIn = () => {
+    const ifAdmin = Cookies.get('admin');
+
+    console.log(ifAdmin);
+    if (ifAdmin) {
+
+      nav('/dashboard');
+
+    }
+  };
+  useEffect(() => { IfAdminLoggedIn() }, [])
+
+
+
+  const [admindata, setAdmindata] = useState({});
+  //  const manageAdminData = (e)=>{
+  //   console.log(e.target.name,e.target.value);
+
+  const handleLogIn = async () => {
+    const response = await fetch('http://localhost:5500/admin/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(admindata)
+
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      Cookies.set('admin', JSON.stringify({ ...data.data, auth: data.auth }));
+      nav('/dashboard');
+    }
+    else {
+      alert("invalid credentials");
+    }
+  };
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
           <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
-          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to Sign In.</Typography>
+          <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your UserName and password to Sign In.</Typography>
         </div>
         <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
-              Your email
+              Your User Name
             </Typography>
             <Input
+              onChange={(e) => { setAdmindata({ ...admindata, mail: e.target.value }) }}
               size="lg"
               placeholder="name@mail.com"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -33,6 +75,7 @@ export function SignIn() {
               Password
             </Typography>
             <Input
+              onChange={(e) => { setAdmindata({ ...admindata, password: e.target.value }) }}
               type="password"
               size="lg"
               placeholder="********"
@@ -60,11 +103,11 @@ export function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6" fullWidth>
+          <Button className="mt-6" onClick={handleLogIn} value="Login" fullWidth>
             Sign In
           </Button>
 
-          <div className="flex items-center justify-between gap-2 mt-6">
+          {/* <div className="flex items-center justify-between gap-2 mt-6">
             <Checkbox
               label={
                 <Typography
@@ -108,7 +151,7 @@ export function SignIn() {
           <Typography variant="paragraph" className="text-center text-blue-gray-500 font-medium mt-4">
             Not registered?
             <Link to="/auth/sign-up" className="text-gray-900 ml-1">Create account</Link>
-          </Typography>
+          </Typography> */}
         </form>
 
       </div>

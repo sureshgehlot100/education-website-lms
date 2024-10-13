@@ -1,6 +1,28 @@
-import React from 'react'
+"use client"
+import React, { useEffect } from 'react'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation';
 
 function Header() {
+    const router = useRouter();
+
+  const IfAdminLoggedIn = () => {
+    const ifAdmin = Cookies.get('admin');
+
+    console.log(ifAdmin);
+    if (!ifAdmin) {
+
+      router.push('/Login');
+
+    }
+  };
+  useEffect(() => { IfAdminLoggedIn() }, []);
+
+  const logOutAdmin = () => {
+    Cookies.remove('admin');
+
+    router.push('/Login');
+  }
     return (
         <div class="flex justify-between items-center px-4 py-4 bg-[#FFFFFF]">
             {/* <!-- Logo --> */}
@@ -13,17 +35,12 @@ function Header() {
             {/* <!-- Navigation --> */}
             <div class="flex items-center">
                 {/* <!-- Login/Logout buttons --> */}
-                <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
-                    Login
-                </button>
-                <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded ml-2">
-                    Logout
-                </button>
+                <button onClick={logOutAdmin} className="text-gray-800   focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log Out</button>
 
                 {/* <!-- My Profile link --> */}
-                <a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 ease-in-out ml-2">
+                {/* <a href="#" class="text-gray-600 hover:text-gray-900 transition duration-300 ease-in-out ml-2">
                     My Profile
-                </a>
+                </a> */}
             </div>
         </div>
     )

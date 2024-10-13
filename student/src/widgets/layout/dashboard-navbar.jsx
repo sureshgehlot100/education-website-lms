@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import {
   Navbar,
   Typography,
@@ -25,6 +25,8 @@ import {
   setOpenConfigurator,
   setOpenSidenav,
 } from "@/context";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -32,23 +34,41 @@ export function DashboardNavbar() {
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
 
+  const nav = useNavigate();
+
+
+  const IfAdminLoggedIn = () => {
+    const ifAdmin = Cookies.get('admin');
+
+    console.log(ifAdmin);
+    if (!ifAdmin) {
+
+      nav('/');
+
+    }
+  };
+  useEffect(() => { IfAdminLoggedIn() }, []);
+
+  const logOutAdmin = () => {
+    Cookies.remove('admin');
+
+    nav('/');
+  }
   return (
     <Navbar
       color={fixedNavbar ? "white" : "transparent"}
-      className={`rounded-xl transition-all ${
-        fixedNavbar
+      className={`rounded-xl transition-all ${fixedNavbar
           ? "sticky top-4 z-40 py-3 shadow-md shadow-blue-gray-500/5"
           : "px-0 py-1"
-      }`}
+        }`}
       fullWidth
       blurred={fixedNavbar}
     >
       <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
         <div className="capitalize">
           <Breadcrumbs
-            className={`bg-transparent p-0 transition-all ${
-              fixedNavbar ? "mt-1" : ""
-            }`}
+            className={`bg-transparent p-0 transition-all ${fixedNavbar ? "mt-1" : ""
+              }`}
           >
             <Link to={`/${layout}`}>
               <Typography
@@ -85,12 +105,13 @@ export function DashboardNavbar() {
           </IconButton>
           <Link to="/auth/sign-in">
             <Button
+              onClick={logOutAdmin}
               variant="text"
               color="blue-gray"
               className="hidden items-center gap-1 px-4 xl:flex normal-case"
             >
               <UserCircleIcon className="h-5 w-5 text-blue-gray-500" />
-              Sign In
+              Log Out
             </Button>
             <IconButton
               variant="text"
