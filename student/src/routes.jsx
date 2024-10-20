@@ -5,11 +5,13 @@ import {
   InformationCircleIcon,
   ServerStackIcon,
   RectangleStackIcon,
+  BookOpenIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 import Video from "./pages/dashboard/lectureVideo";
 import { VideoCameraSlashIcon } from "@heroicons/react/24/outline";
+import Pdf from "./pages/dashboard/pdf";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -42,6 +44,12 @@ export const routes = [
         name: "video",
         path: "/lectureVideo",
         element: <Video />,
+      },
+      {
+      icon: <BookOpenIcon {...icon} />,
+      name: "Study Material",
+      path: "/pdf",
+      element: <Pdf />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,

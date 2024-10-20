@@ -9,6 +9,7 @@ const otpRouter = require('./routes/otp/otp');
 const userRoutes = require('./routes/user/user');
 const verifyJWT = require('./middleware/jwt/jwtVerify');
 const paymentRoutes = require('./routes/payment/payment');
+const studyRoutes = require('./routes/study/Study');
 
 require('./db/config');
 
@@ -25,6 +26,7 @@ allRoutes.use('/videos', videoRoutes);
 allRoutes.use('/otp', otpRouter);
 allRoutes.use('/user', userRoutes);
 allRoutes.use('/payment',paymentRoutes);
+allRoutes.use('/study',studyRoutes);
 
 // allRoutes.use('/',verifyRoutes);
 

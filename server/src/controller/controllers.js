@@ -30,6 +30,8 @@ const updateTeam = require('./teams/updateTeam');
 const userDelete = require('./user/userdelete');
 const receipt = require('./payment/receiptSuccess');
 const updateVideo = require('./video/updateVideo');
+const addstudy = require('./study/addStudy');
+const readstudy = require('./study/readstudy');
 
 module.exports = {
     registerAdmin,
@@ -63,5 +65,7 @@ module.exports = {
     userDelete,
     reqPayment,
     receipt,
-    updateVideo
+    updateVideo,
+    addstudy,
+    readstudy
 }
