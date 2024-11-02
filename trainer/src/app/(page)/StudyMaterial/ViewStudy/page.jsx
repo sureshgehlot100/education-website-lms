@@ -43,7 +43,7 @@ function ViewStudy() {
                         <h3 className="font-bold">{material.title}</h3>
                         <p>Lesson Number: {material.lessonNumber}</p>
                         <a
-                          href={filePath + material.file} // Adjust the URL to access the PDF file
+                          href={filePath + material.file} 
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-500 hover:underline"

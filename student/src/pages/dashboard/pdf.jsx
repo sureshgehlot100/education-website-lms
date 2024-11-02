@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function Pdf() {
   const [studyData, setStudyData] = useState(null);
-  const [filePath,setfilePath]= useState('');
+  const [filePath, setfilePath] = useState('');
 
   useEffect(() => {
     const fetchStudyData = async () => {
@@ -29,14 +29,18 @@ function Pdf() {
       {studyData.map((lesson, index) => (
         <div key={index} className="mb-8 bg-white shadow-md rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-2">
-            Lesson {lesson.lessonNo}: {lesson.lessonName}
+            Lesson {lesson.lessonNumber}: {lesson.title}
           </h2>
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe
-              src={filePath+lesson.file}
-              className="w-full h-full"
-              title={`Lesson ${lesson.lessonNo} PDF`}
-            ></iframe>
+          <div>
+            Notes PdF:==>>>
+            <a
+              href={filePath + lesson.file} // Adjust the URL to access the PDF file
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              View PDF
+            </a>
           </div>
         </div>
       ))}

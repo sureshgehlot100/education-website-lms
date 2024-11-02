@@ -6,12 +6,14 @@ import {
   ServerStackIcon,
   RectangleStackIcon,
   BookOpenIcon,
+  CubeTransparentIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 import Video from "./pages/dashboard/lectureVideo";
 import { VideoCameraSlashIcon } from "@heroicons/react/24/outline";
 import Pdf from "./pages/dashboard/pdf";
+import Test from "./pages/dashboard/test";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -28,6 +30,24 @@ export const routes = [
         element: <Home />,
       },
       {
+        icon: <VideoCameraSlashIcon {...icon} />,
+        name: "video",
+        path: "/lectureVideo",
+        element: <Video />,
+      },
+      {
+        icon: <BookOpenIcon {...icon} />,
+        name: "Study Material",
+        path: "/pdf",
+        element: <Pdf />,
+      },
+      {
+        icon: <CubeTransparentIcon {...icon} />,
+        name: "Exam",
+        path: "/test",
+        element: <Test />,
+      },
+      {
         icon: <UserCircleIcon {...icon} />,
         name: "profile",
         path: "/profile",
@@ -38,18 +58,6 @@ export const routes = [
         name: "tables",
         path: "/tables",
         element: <Tables />,
-      },
-      {
-        icon: <VideoCameraSlashIcon {...icon} />,
-        name: "video",
-        path: "/lectureVideo",
-        element: <Video />,
-      },
-      {
-      icon: <BookOpenIcon {...icon} />,
-      name: "Study Material",
-      path: "/pdf",
-      element: <Pdf />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
