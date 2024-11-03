@@ -7,13 +7,19 @@ const {registerAdmin} = require('./src/controller/controllers');
 const app = express();
 app.use(express.json());
 app.use(cors());
+const corsConfig = {
+    origin: "*",
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credential:true,
+}
+app.use(cors(corsConfig));
 app.use('/uploads',express.static(path.join(__dirname,'src','uploads')));
 
 app.use(allRoutes);
 
 registerAdmin();
 
-app.listen(process.env.PORT,()=>{
-    console.log(`Server is running on port ${process.env.PORT}`)
-});
+// app.listen(process.env.PORT,()=>{
+//     console.log(`Server is running on port ${process.env.PORT}`)
+// });
 module.exports = app;
