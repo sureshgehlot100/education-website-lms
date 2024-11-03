@@ -9,8 +9,8 @@ app.use(express.json());
 app.use(cors());
 const corsConfig = {
     origin: "*",
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credential:true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }
 app.use(cors(corsConfig));
 app.use('/uploads',express.static(path.join(__dirname,'src','uploads')));
